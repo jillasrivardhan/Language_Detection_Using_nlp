@@ -1,0 +1,158 @@
+{% extends 'users/userbase.html' %}
+{% block content %}
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background Gradient */
+.ai-bg{
+    min-height:90vh;
+    background: linear-gradient(135deg,#141E30,#243B55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+/* Glass Card */
+.glass-card{
+    width:80%;
+    max-width:800px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.4);
+    color:white;
+    animation:fadeIn 1s ease-in-out;
+}
+
+/* Heading */
+.title{
+    text-align:center;
+    font-size:36px;
+    font-weight:600;
+    margin-bottom:25px;
+}
+
+/* Textarea */
+textarea{
+    width:100%;
+    height:130px;
+    border-radius:12px;
+    border:none;
+    padding:15px;
+    font-size:16px;
+    outline:none;
+}
+
+/* Button */
+.predict-btn{
+    margin-top:20px;
+    background:linear-gradient(45deg,#00c6ff,#0072ff);
+    border:none;
+    padding:12px 35px;
+    color:white;
+    font-size:18px;
+    border-radius:30px;
+    transition:0.3s;
+}
+
+.predict-btn:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 15px #00c6ff;
+}
+/*ord Clear Button */
+.clear-btn{
+    background:#ff4d4d;
+    border:none;
+    padding:6px 16px;
+    color:white;
+    font-size:12px;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+.clear-btn:hover{
+    background:#cc0000;
+}
+
+/* Result Card */
+.result-box{
+    margin-top:30px;
+    background:white;
+    color:#333;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    animation:fadeUp 0.8s ease;
+}
+
+.result-text{
+    font-size:22px;
+    font-weight:600;
+    color:#0072ff;
+}
+
+/* Animations */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+</style>
+
+<div class="ai-bg">
+
+<div class="glass-card">
+
+    <div class="title">
+        🌍 AI Language Detection
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label><b>Enter Text for Prediction</b></label>
+
+        <textarea name="text" id = "textInput" placeholder="Type or paste any language text here...">{{ entered_text }}</textarea>
+
+        <div style="text-align:center;">
+            <button type="submit" class="predict-btn">
+                🚀 Predict Language
+            </button>
+            <br><br>
+            <button type="button" class="predict-btn" onclick="clearText()">
+                🧹 Clear Text
+        </div>
+
+    </form>
+
+    {% if output %}
+    <div class="result-box">
+        <h4>Prediction Result</h4>
+        <p class="result-text">
+            Detected Language: {{ output }}
+        </p>
+    </div>
+    {% endif %}
+
+</div>
+</div>
+<script>
+    function clearText() {
+        document.querySelector('textarea').value = '';
+    }
+</script>
+{% endblock %}

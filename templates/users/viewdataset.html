@@ -1,0 +1,21 @@
+{% extends 'users/userbase.html' %}
+
+{% block content %}  <!--we have to remove s in contents -->
+<!-- Include Bootstrap CSS for styling -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<div class="section-header">
+    <h2 class="section-title wow fadeInDown">Dataset View</h2>
+    <p class="wow fadeInDown">Here is the content of your dataset:</p>
+</div>
+
+<div class="container">
+    <div class="row" style="margin: 10px;">
+        <!-- Render the DataFrame as an HTML table -->
+        <div class="table-responsive">
+            {{ data|safe }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

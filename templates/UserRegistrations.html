@@ -1,0 +1,91 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block contents%}
+
+<style>
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+.glass-card {
+    width: 100%;
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.glass-card h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+.register-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.register-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 114, 255, 0.4);
+}
+
+.message-box {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #00ffcc;
+}
+</style>
+
+<div class="glass-card">
+
+    <h2>📝 User Registration</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text" name="name" class="input-field" placeholder="Full Name" required>
+        <input type="text" name="loginid" class="input-field" placeholder="Login ID" required>
+        <input type="email" name="email" class="input-field" placeholder="Email" required>
+        <input type="text" name="mobile" class="input-field" placeholder="Mobile Number" required>
+        <input type="password" name="pswd" class="input-field" placeholder="Password" required>
+        <input type="text" name="locality" class="input-field" placeholder="Locality" required>
+
+        <button type="submit" class="register-btn">
+            Register
+        </button>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message-box">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+    </form>
+
+</div>
+
+{%endblock%}
