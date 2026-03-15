@@ -1,0 +1,95 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block contents%}
+<!--<style>-->
+<!--    .bg-light{-->
+<!--    margin-top: -500px;-->
+<!--    background: #65cd00;-->
+<!--    padding:10px;-->
+<!--    }-->
+<!--</style>-->
+
+
+<style>
+body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+.glass-card {
+    width: 100%;
+    max-width: 420px;
+    margin: 100px auto;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    color: white;
+}
+
+.glass-card h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+.admin-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(135deg, #ff512f, #dd2476);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.admin-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(221, 36, 118, 0.4);
+}
+
+.message-box {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #00ffcc;
+}
+</style>
+
+<div class="glass-card">
+
+    <h2>🛡 Admin Login</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text" name="username" class="input-field" placeholder="Admin Username" required>
+        <input type="password" name="password" class="input-field" placeholder="Admin Password" required>
+
+        <button type="submit" class="admin-btn">
+            Login as Admin
+        </button>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message-box">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+    </form>
+
+</div>
+
+{%endblock%}

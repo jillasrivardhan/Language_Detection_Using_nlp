@@ -1,0 +1,63 @@
+{% extends 'users/userbase.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <!-- HERO SECTION -->
+    <div class="text-center mb-5">
+        <h1 style="color:#d51212;">Language Detection Using NLP</h1>
+        <p class="lead">Welcome To User Home Page</p>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="row text-center">
+
+        <!-- DATASET -->
+        <div class="col-md-4">
+            <div class="card shadow p-4">
+                <h4>Dataset Analysis</h4>
+                <p>View and explore language datasets used for training.</p>
+            </div>
+        </div>
+
+        <!-- TRAINING -->
+        <div class="col-md-4">
+            <div class="card shadow p-4">
+                <h4>Model Training</h4>
+                <p>Train NLP model and evaluate accuracy.</p>
+            </div>
+        </div>
+
+        <!-- PREDICTION -->
+        <div class="col-md-4">
+            <div class="card shadow p-4">
+                <h4>Language Prediction</h4>
+                <p>Predict language instantly from user input.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODEL INFO -->
+    <div class="mt-5">
+        <h3 class="text-center">Model Working</h3>
+
+        <pre class="bg-light p-3 rounded">
+vectorization = TfidfVectorizer()
+xv_train = vectorization.fit_transform(x_train)
+xv_test = vectorization.transform(x_test)
+
+svm_model = SVC(kernel='linear')
+svm_model.fit(xv_train,y_train)
+
+svm_y_pred = svm_model.predict(xv_test)
+score = accuracy_score(y_test,svm_y_pred)
+        </pre>
+    </div>
+
+</div>
+
+{% endblock %}
+
+
